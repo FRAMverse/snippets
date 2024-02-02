@@ -45,6 +45,17 @@ returns a data frame, with separate columns for area name and fishery type (e.g.
 - `db-pull-example.R` has example code to pull information from a local database. When working with FRAM files, note that the FRAMrsquared package (https://github.com/FRAMverse/framrsquared) has a lot of functions that massively streamline working with the FRAM databases. When appropriate, we strongly recommend the
 FRAMrsquared functions instead. 
 
+## Quarto and Rmarkdown
+
+`R/markdown and quarto/` contains 
+
+- `custom-yaml-header.Rmd` which contains a template YAML header for an
+Rmarkdown or Quarto document to handle some good defaults (include table of contents, allow
+code folding, turn off warnings and messages so that reading in packages doesn't lead to messiness). Any of these arguments can be changed; this is just meant to be an efficient starting point.
+Note that this is designed for use with `style.css`, which adds the WDFW logo to the header.
+- `style.css` is a style file that can be used to the wdfw logo to Quarto files. Put a copy of `style.css` into the folder of the quarto file, and include `css: style.css` in the YAML header of the quarto file (already in `custom-yaml-header.Rmd`). Pulls logo from the wdfw website, so will only work when
+computer is connected to the internet. 
+
 ## Misc
 
 - `example-ode-solver.R` has example code for numerically solving and plotting a system of ordinary differential equations (a form of continuous time dynamic models). Many theoretical ecology models are constructed of ordinary differential equations.
