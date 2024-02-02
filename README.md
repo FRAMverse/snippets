@@ -44,9 +44,6 @@ returns a data frame, with separate columns for area name and fishery type (e.g.
 
 - `db-pull-example.R` has example code to pull information from a local database. When working with FRAM files, note that the FRAMrsquared package (https://github.com/FRAMverse/framrsquared) has a lot of functions that massively streamline working with the FRAM databases. When appropriate, we strongly recommend the
 FRAMrsquared functions instead. 
-- 
-
-
 
 ## Misc
 
