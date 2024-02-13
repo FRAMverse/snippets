@@ -40,6 +40,7 @@ period_2daily = function(df,
 }
 
 ## example --------------------------------------
+library(dplyr)
 
 ## generate example data frame. Added "num.caught" as example for a divisee
 regs.df = data.frame(areacode = c("05", "05", "05", "05", "06", "06"), 
