@@ -39,6 +39,9 @@ of which columns to include when looking for duplicates.
 - `fishery-renamer.R` has a function that translates the fishery names used in FRAM
 and TAMM into consistent, easily readable strings. With optional argument `sep = TRUE`, it instead
 returns a data frame, with separate columns for area name and fishery type (e.g. "Troll", "Sport", "Net"). 
+- `timestep-finder.R` calculates the chinook timestep from a vector of dates. Without knowing run-year, timesteps 1 and 4 entirely overlap; this function returns dates in that period as timestep 4.
+- `period-2daily.R` takes a dataframe with a row per period (e.g., per regulatory period), and expands this
+to a dataframe with one entry per day. Optional "dividee" argument allows easy distribution of aggregated values to daily averages (e.g., total fish caught in a period can be divided into average fish caught per day).
 
 ## File manipulation
 
