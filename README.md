@@ -1,11 +1,20 @@
 # Code snippets for easy re-use.
 
-The goal of this repository is to store and share snippets of code that members of the 
-FRAM team find useful. The following is an overview of the current code, which we hope
-will streamline finding useful code. This will be updated periodically, and the repository may contain
-snippets that are not documented here.
+The goal of this repository is to store and share snippets of code that members of the FRAM team find useful. The following is an overview of the current code, which we hope will streamline finding and sharing useful code. This will be updated periodically, and the repository may contain snippets that are not documented here.
 
-At present, all scripts are in `R/`
+# Command line code, in `commandline/`
+
+- `readme-maker.txt` has directions for using windows commands to create a text file of the directory tree of the current directory. We have found this helpful when documenting complex projects for sharing/publication (for example: see "README.txt" of the data and code repository here: https://figshare.com/articles/dataset/Data_and_analysis_for_Plant_defense_synergies_and_antagonisms_affect_performance_of_specialist_herbivores_of_common_milkweed_/20421633)
+- `search-for-file-name.txt` has an example for using windows command-line to carry out searching for specific filename using wildcards.
+- `search-sh.txt` has an example for using windows command-line to carry out a seach of the CONTENTS of files. This can be particularly useful when trying to find the script that generated a file (presuming the file name wasn't programmatically generated, the script in question should contain the file name in it).
+
+# Visual Basic code, in `VB/`
+
+## Macros
+
+- `Scalars-Compute-MR.vb` is the macro used in `ChinRSScalers.*.xlsm`, which populates the Columbia river marked fish rates from RMIS data. 
+
+# R code, in `R/`
 
 ## Visualization tools
 
@@ -64,7 +73,4 @@ computer is connected to the internet.
 - `example-ode-solver.R` has example code for numerically solving and plotting a system of ordinary differential equations (a form of continuous time dynamic models). Many theoretical ecology models are constructed of ordinary differential equations.
 - `multi-list-dopar.R` has an example of parallelization with multiple objects output per loop. 
 
-## Workflow
-- `readme-maker.txt` has directions for using windows commands to create a text file of the directory tree of the current directory. We have found this helpful when documenting complex projects for sharing/publication (for example: see "README.txt" of the data and code repository here: https://figshare.com/articles/dataset/Data_and_analysis_for_Plant_defense_synergies_and_antagonisms_affect_performance_of_specialist_herbivores_of_common_milkweed_/20421633)
-- `search-for-file-name.txt` has an example for using windows command-line to carry out searching for specific filename using wildcards.
-- `search-sh.txt` has an example for using windows command-line to carry out a seach of the CONTENTS of files. This can be particularly useful when trying to find the script that generated a file (presuming the file name wasn't programmatically generated, the script in question should contain the file name in it).
+
