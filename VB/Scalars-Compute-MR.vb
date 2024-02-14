@@ -33,7 +33,7 @@ Sub ComputeMR()
     Dim StkNameAr() As String
     Dim DevTypeAr() As String
     
-	'CE: making sure we're on the correct worksheet
+    'CE: making sure we're on the correct worksheet
     'Workbooks("ChinRSScalars&MR09.xls").Activate
     ActiveWorkbook.Activate
     Worksheets("RMIS_Mod").Activate
@@ -45,9 +45,9 @@ Sub ComputeMR()
     Loop
     lnCount = i
     
-	'CE: Restructuring our declared variables
-	'CE: Pretty sure Fr and Ta refer to FRAM and TAMM respectively
-	'CE: Not sure on Special, except that there are some calculations that treat a few fisheries differently
+    'CE: Restructuring our declared variables
+    'CE: Pretty sure Fr and Ta refer to FRAM and TAMM respectively
+    'CE: Not sure on Special, except that there are some calculations that treat a few fisheries differently
     ReDim FrMarked(40, 5)
     ReDim FrUnmarked(40, 5)
     ReDim FrMr(40, 5)
@@ -68,7 +68,7 @@ Sub ComputeMR()
     ReDim DevTypeAr(lnCount)
     
     ' map to stock
-	'CE: N is counter for possible errors (storing every entry which is not assigned a FRAM stock.
+    'CE: N is counter for possible errors (storing every entry which is not assigned a FRAM stock.
     N = 1
     For i = 2 To lnCount - 1
         'these fields are needed to define a TAMM/FRAM stock
@@ -83,8 +83,8 @@ Sub ComputeMR()
         TAMMStk = 0
         SpecialStk = 0
         
-		'CE: basically a giant lookup table; based on entry, should assign FRAM, TAMM, and/or Special stock number.
-		'CE: Those numbers determine whether the marked and unmarked fish contribute to counts for appropriate stock-age-markedstatus counts.
+        'CE: basically a giant lookup table; based on entry, should assign FRAM, TAMM, and/or Special stock number.
+        'CE: Those numbers determine whether the marked and unmarked fish contribute to counts for appropriate stock-age-markedstatus counts.
         Select Case Run
             Case "FCH"
                 Select Case Region
@@ -115,7 +115,7 @@ Sub ComputeMR()
                         Select Case Basin
                             Case "CRGNG"
                                 Select Case Hatchery
-                                    Case "TURTLE ROCK HATCHERY", "NA", "WELLS HATCHERY", "GRANT COUNTY PUD", "WELLS DAM SP CHANNEL", "OROVILLE ES(OROVILLE", "WATERVILLE SD 209", "MANSFIELD SD 207", "RFEG 14 CASCADE COLUMBIA", "FOSTER CREEK CONSERVATION"
+                                    Case "TURTLE ROCK HATCHERY", "NA", "WELLS HATCHERY", "GRANT COUNTY PUD", "WELLS DAM SP CHANNEL", "OROVILLE ES(OROVILLE", "WATERVILLE SD 209", "MANSFIELD SD 207", "RFEG 14 CASCADE COLUMBIA", "FOSTER CREEK CONSERVATION", "BRIDGEPORT ES"
                                         FramStk = 23
                                     Case "PRIEST RAPIDS HATCHERY", "RINGOLD SPRINGS HATCHERY", "FRANKLIN CONSERV DIST", "YAKIMA BASIN ENVIRONMENTA", "GRANT COUNTY CONS. DIST.", "BENTON CONSERVATION DISTR"
                                         SpecialStk = 1
@@ -126,9 +126,9 @@ Sub ComputeMR()
                         Select Case Basin
                             Case "LWFR", "LOFR", "FRTHG"
                                 Select Case Hatchery
-                                    Case "H-Chilliwack River H", "H-Chehalis River H", "H-Alouette River, South H", "H-Coquitlam River H", "H-Tynehead H"
+                                    Case "H-Chilliwack River H", "H-Chehalis River H", "H-Alouette River, South H", "H-Coquitlam River H"
                                         FramStk = 30
-                                    Case "H-Little Campbell River H", "H-Serpentine River H"
+                                    Case "H-Little Campbell River H", "H-Serpentine River H", "H-Tynehead H"
                                         FramStk = 32
                                     Case "H-Pr George (Mackenzie) S"
                                         FramStk = 31
@@ -451,19 +451,19 @@ Sub ComputeMR()
                 
             End Select
             Age = Cells(i, 12).Value
-			'CE: Add sum of clipped fish to the current values for this row to the ongoing total for marked fish of FRStock-age
+            'CE: Add sum of clipped fish to the current values for this row to the ongoing total for marked fish of FRStock-age
             FrMarked(FramStk, Age) = FrMarked(FramStk, Age) + Cells(i, 8).Value + Cells(i, 10).Value
-			'CE: Add sum of unclipped fish to the current values for this row to the ongoing total for marked fish of FRStock-age
+            'CE: Add sum of unclipped fish to the current values for this row to the ongoing total for marked fish of FRStock-age
             FrUnmarked(FramStk, Age) = FrUnmarked(FramStk, Age) + Cells(i, 9).Value + Cells(i, 11).Value
-			'CE: Calc ratio of marked to total
+            'CE: Calc ratio of marked to total
             FrMr(FramStk, Age) = FrMarked(FramStk, Age) / (FrMarked(FramStk, Age) + FrUnmarked(FramStk, Age))
 
-			'CE: As above, but for TAMM stock totals instead
+            'CE: As above, but for TAMM stock totals instead
             TaMarked(TAMMStk, Age) = TaMarked(TAMMStk, Age) + Cells(i, 8).Value + Cells(i, 10).Value
             TaUnmarked(TAMMStk, Age) = TaUnmarked(TAMMStk, Age) + Cells(i, 9).Value + Cells(i, 11).Value
             TaMR(TAMMStk, Age) = TaMarked(TAMMStk, Age) / (TaMarked(TAMMStk, Age) + TaUnmarked(TAMMStk, Age))
-			
-			'CE: As above, but for Special stock totals instead
+            
+            'CE: As above, but for Special stock totals instead
             SpecialMarked(SpecialStk, Age) = SpecialMarked(SpecialStk, Age) + Cells(i, 8).Value + Cells(i, 10).Value
             SpecialUnmarked(SpecialStk, Age) = SpecialUnmarked(SpecialStk, Age) + Cells(i, 9).Value + Cells(i, 11).Value
             SpecialMr(SpecialStk, Age) = SpecialMarked(SpecialStk, Age) / (SpecialMarked(SpecialStk, Age) + SpecialUnmarked(SpecialStk, Age))
@@ -485,15 +485,15 @@ Sub ComputeMR()
                 N = N + 1
             End If
     Next i
-	'CE: Switch to "MR" tab
+    'CE: Switch to "MR" tab
     Worksheets("MR").Activate
     For stk = 1 To 39
         For Age = 2 To 5
             Select Case stk
-			'CE: zeroing out some entries, or else entering calculated ratios.
-			'CE: Note that we are NOT zeroing out all the stock with "not needed" proportions, and there are many others with zeroes in the 2023 version. Not sure what's up with that.
-			'CE: Note that we have 3 rows of header and 3 columns before age entries, 
-			'CE:    hence the stk+1 and Age + 2 indexes (really Age + 3 - 1, since ages start at age 2).
+            'CE: zeroing out some entries, or else entering calculated ratios.
+            'CE: Note that we are NOT zeroing out all the stock with "not needed" proportions, and there are many others with zeroes in the 2023 version. Not sure what's up with that.
+            'CE: Note that we have 3 rows of header and 3 columns before age entries,
+            'CE:    hence the stk+1 and Age + 2 indexes (really Age + 3 - 1, since ages start at age 2).
                 Case 11, 13, 14 'CE: MidPS Fall Fing, SPS Fall Fing, SPS Fall Year
                     Cells(stk + 4, Age + 2).Value = 0
 '                Case 24 'add Snake to Upriver Brights
@@ -503,8 +503,8 @@ Sub ComputeMR()
             End Select
         Next Age
     Next stk
-	
-	'CE: same deal as above, but for TAMM info, which starts on row 47.
+    
+    'CE: same deal as above, but for TAMM info, which starts on row 47.
     For stk = 1 To 57
         For Age = 2 To 5
             Select Case stk
@@ -528,7 +528,7 @@ Sub ComputeMR()
         Next Age
     Next stk
     
-	'CE: As above(ish), but dealing with Upriver Brights and Mid-river brights, which get special handling in terms of calculations, and live on rows 107 and 108
+    'CE: As above(ish), but dealing with Upriver Brights and Mid-river brights, which get special handling in terms of calculations, and live on rows 107 and 108
     For stk = 1 To 2
         For Age = 2 To 5
             Select Case stk 'add Snake R to Upriver Brights
@@ -540,7 +540,7 @@ Sub ComputeMR()
         Next Age
     Next stk
     
-	'CE: save error-checking info for debuggin
+    'CE: save error-checking info for debugging
     Worksheets("ErrorCheck").Activate
     For x = 1 To N
             Cells(x + 2, 1).Value = RunAr(x)
@@ -554,3 +554,5 @@ Sub ComputeMR()
    
    
 End Sub
+
+
