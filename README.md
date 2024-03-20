@@ -75,4 +75,7 @@ computer is connected to the internet.
 - `example-ode-solver.R` has example code for numerically solving and plotting a system of ordinary differential equations (a form of continuous time dynamic models). Many theoretical ecology models are constructed of ordinary differential equations.
 - `multi-list-dopar.R` has an example of parallelization with multiple objects output per loop. 
 
+# Excel template files, in `excel/`
+
+ - `FRAMMortalitiesNewBPAEQ_TEMPLATE_R7.1 1.xlsx` can be used in combination with the "Mortalities" table of a FRAM database to parse FRAM mortalities into useful, human-readable form. See the `Notes` tab for details. Reminder: make sure to filter the mortalities table to only a single model run.
 
