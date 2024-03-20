@@ -39,6 +39,10 @@ with appropriate percent axis ticks, such as when working with exploitation rate
 - `ggtheme-larger.R` and `ggtheme-fram.R` define ggplot themes that serve as good baselines when making figures for general consumption. `ggtheme-larger.R` is deprecated, and we are only leaving as a reference point for now. We recommend `ggtheme-fram.R` as a starting point.
 
 
+## FRAM / TAMM tools
+
+- `Update_Age_2_Recruit_Scalar_2024.R` is a script to update age 2 recruit scalars (scalers). Note that the current iteration of this script likely requires 32 bit R to run.
+
 ## Data manipulation
 
 - `data-frame-comparison.R` has code to compare two data frames to look for mismatches. 
