@@ -17,7 +17,7 @@ months_spanned = function(start,
   days.used = do.call(c, map2(start, end, ~ seq(.x, .y, by = "day")))
   years.used = range(year(days.used))
   days.skel = seq(as.Date(paste0(years.used[1],"-01-01")),
-             as.Date(paste0(years.used[1],"-12-31")),
+             as.Date(paste0(years.used[2],"-12-31")),
              by = "day")
   df.used = data.frame(date = days.used) |> 
     mutate(year = year(date),
