@@ -25,6 +25,7 @@ variables of a dataframe, in a ggplot framework.
 - `correlation-paired-plot.R` is a way to compare correlations between variables of a dataframe using base R.
 - `geom_pie2.R` is a modified version of geom_pie from the `scatterpie` package. The scatterpie package
 can be used to add piechart layers onto maps, making it useful for some very specific types of plots. As of 2018 when Collin Edwards was using the package regularly, however, geom_pie only worked if the variables of the data frame used had specific names. `geom_pie2()` fixes this problem, making `geom_pie` behave consistently to other ggplot type functions.
+- `ggplot-template-area-periods.R` provides example code to make a plot representing fishing in areas based on the start and end dates of fishing periods. Note that this can be used more generally for kind of data with start and end dates and multiple categories (e.g. fisheries).
 
 ### Support
 - `color-blind-palette.R` contains a simple vector of colorblind friendly colors
