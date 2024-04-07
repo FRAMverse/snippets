@@ -3,7 +3,9 @@ library(tidyverse)
 library(framrsquared)
 library(openxlsx)
 
-fram_flag_reporter = function(fram.db, summary.file){
+fram_flag_reporter = function(fram.db, ##path to database to check
+                              summary.file, #path to save file. Must end in .xlsx
+                              runids = NULL){ #optional: list of runids to analyze (useful if databae is full and want to check one or a few runs)
   NR.flags = data.frame(non_retention_flag = c(1, 2, 3, 4),
                         flag.description = c("Computed CNR",
                                              "Ratio of CNR Days",
@@ -28,6 +30,12 @@ fram_flag_reporter = function(fram.db, summary.file){
   NR = fetch_table(fr.con, "NonRetention")
   disconnect_fram_db(fr.con)
   
+  if(!is.null(runids)){
+    fishery.scalers = fishery.scalers |> 
+      filter(run_id %in% runids)
+    NR = NR |> 
+      filter(run_id %in% runids)
+  }
   fishery.scalers = left_join(fishery.scalers, run.list |> select(run_id, run_name))
   fishery.scalers = left_join(fishery.scalers, scalers.flags)
   fish.flag.sum = fishery.scalers |> 
