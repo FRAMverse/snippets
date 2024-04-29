@@ -45,6 +45,7 @@ with appropriate percent axis ticks, such as when working with exploitation rate
 
 ## Data manipulation
 
+- `check-mismatch.R` takes two vectors and reports mismatches in a readable format. This is especially useful when joining data from different sources, as it simplifies checking for different spellings or abbreviations.
 - `data-frame-comparison.R` has code to compare two data frames to look for mismatches. 
 This can be very helpful for QA/QC (e.g., comparing the output of a new method to the output of
 an old method, when the results should be the same).
