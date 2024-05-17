@@ -26,6 +26,7 @@ variables of a dataframe, in a ggplot framework.
 - `geom_pie2.R` is a modified version of geom_pie from the `scatterpie` package. The scatterpie package
 can be used to add piechart layers onto maps, making it useful for some very specific types of plots. As of 2018 when Collin Edwards was using the package regularly, however, geom_pie only worked if the variables of the data frame used had specific names. `geom_pie2()` fixes this problem, making `geom_pie` behave consistently to other ggplot type functions.
 - `ggplot-template-area-periods.R` provides example code to make a plot representing fishing in areas based on the start and end dates of fishing periods. Note that this can be used more generally for kind of data with start and end dates and multiple categories (e.g. fisheries).
+- `von-bertalanffy-fram.R` provides code to plot the parameterized growth function for Chinook, including the average size at time step for ages 2-5. 
 
 ### Support
 - `color-blind-palette.R` contains a simple vector of colorblind friendly colors
@@ -37,11 +38,14 @@ be useful in data manipulation, there are likely better tools for this, dependin
 based on transformations of the data. The main use case we see is plotting proportion data
 with appropriate percent axis ticks, such as when working with exploitation rate.
 - `ggtheme-larger.R` and `ggtheme-fram.R` define ggplot themes that serve as good baselines when making figures for general consumption. `ggtheme-larger.R` is deprecated, and we are only leaving as a reference point for now. We recommend `ggtheme-fram.R` as a starting point.
+- `adjust-points.R` contains a function that programmatically shifts overlapping points by a small amount to make colors/symbols easy to make out.  
 
 
 ## FRAM / TAMM tools
 
 - `Update_Age_2_Recruit_Scalar_2024.R` is a script to update age 2 recruit scalars (scalers). Note that the current iteration of this script likely requires 32 bit R to run.
+- `fram-flag-reporter.R` has a prototype function to aggregate the different flags used for fisheries and stock in a FRAM database and spit out a summary report. THis is likely superceded by current or future work in the `framrsquared` package.
+
 
 ## Data manipulation
 
@@ -79,6 +83,8 @@ computer is connected to the internet.
 
 - `example-ode-solver.R` has example code for numerically solving and plotting a system of ordinary differential equations (a form of continuous time dynamic models). Many theoretical ecology models are constructed of ordinary differential equations.
 - `multi-list-dopar.R` has an example of parallelization with multiple objects output per loop. 
+- `framrsquared-style-checker.R` has functions to check an R script for (a) use of `<-` for assignment, and (b) use of snake_case for variable assignment. These are not foolproof, but server as helpers for more consistent coding.
+
 
 # Excel template files, in `excel/`
 
