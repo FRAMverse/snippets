@@ -1,5 +1,5 @@
 ## Template for plotting regs
-
+library(ggplot2)
 ## make example data
 regs.df = data.frame(start = as.Date(c("5/1/2022", "7/5/2022", "8/16/2022", "5/1/2022"), format = c("%m/%d/%Y")),
                      end = as.Date(c("6/30/2022", "7/20/2022", "9/28/2022", "4/30/2023"), format = c("%m/%d/%Y")),

@@ -38,13 +38,13 @@ be useful in data manipulation, there are likely better tools for this, dependin
 based on transformations of the data. The main use case we see is plotting proportion data
 with appropriate percent axis ticks, such as when working with exploitation rate.
 - `ggtheme-larger.R` and `ggtheme-fram.R` define ggplot themes that serve as good baselines when making figures for general consumption. `ggtheme-larger.R` is deprecated, and we are only leaving as a reference point for now. We recommend `ggtheme-fram.R` as a starting point.
-- `adjust-points.R` contains a function that programmatically shifts overlapping points by a small amount to make colors/symbols easy to make out.  
+- `adjust-points.R` contains a function that programmatically shifts overlapping points by a small amount to make colors/symbols easy to see.  
 
 
 ## FRAM / TAMM tools
 
 - `Update_Age_2_Recruit_Scalar_2024.R` is a script to update age 2 recruit scalars (scalers). Note that the current iteration of this script likely requires 32 bit R to run.
-- `fram-flag-reporter.R` has a prototype function to aggregate the different flags used for fisheries and stock in a FRAM database and spit out a summary report. THis is likely superceded by current or future work in the `framrsquared` package.
+- `fram-flag-reporter.R` has a prototype function to aggregate the different flags used for fisheries and stock in a FRAM database and spit out a summary report. Tis is likely superceded by current or future work in the `framrsquared` package.
 
 
 ## Data manipulation
@@ -53,20 +53,19 @@ with appropriate percent axis ticks, such as when working with exploitation rate
 - `data-frame-comparison.R` has code to compare two data frames to look for mismatches. 
 This can be very helpful for QA/QC (e.g., comparing the output of a new method to the output of
 an old method, when the results should be the same).
-- `data-frame-duplicates.R` has code to identify duplicate rows within a dataframe, with a lot of flexibility
-of which columns to include when looking for duplicates.
+- `data-frame-duplicates.R` has code to identify duplicate rows within a dataframe, with a lot of flexibility of which columns to include when looking for duplicates.
 - `fishery-renamer.R` has a function that translates the fishery names used in FRAM
 and TAMM into consistent, easily readable strings. With optional argument `sep = TRUE`, it instead
-returns a data frame, with separate columns for area name and fishery type (e.g. "Troll", "Sport", "Net"). 
-- `timestep-finder.R` calculates the chinook timestep from a vector of dates. Without knowing run-year, timesteps 1 and 4 entirely overlap; this function returns dates in that period as timestep 4.
+returns a data frame, with separate columns for area name and fishery type (e.g. "Troll", "Sport", "Net").
+- `filter-catch-by-regulation.R` has example code to work with test fishing data. 
+- `months-spanned.R` takes start and end dates (either atomics or vectors) and returns a data frame with the months the period or periods spanned and the days and proportions of those months spanned. With optional argument `return.empties = TRUE`, it also returns all other months in the associated years with 0s for the days and proportions columns
 - `period-2daily.R` takes a dataframe with a row per period (e.g., per regulatory period), and expands this
 to a dataframe with one entry per day. Optional "dividee" argument allows easy distribution of aggregated values to daily averages (e.g., total fish caught in a period can be divided into average fish caught per day).
-- `months-spanned.R` takes start and end dates (either atomics or vectors) and returns a data frame with the months the period or periods spanned and the days and proportions of those months spanned. With optional argument `return.empties = TRUE`, it also returns all other months in the associated years with 0s for the days and proportions columns
+- `timestep-finder.R` calculates the chinook timestep from a vector of dates. Without knowing run-year, timesteps 1 and 4 entirely overlap; this function returns dates in that period as timestep 4.
 
 ## File manipulation
 
-- `db-pull-example.R` has example code to pull information from a local database. When working with FRAM files, note that the FRAMrsquared package (https://github.com/FRAMverse/framrsquared) has a lot of functions that massively streamline working with the FRAM databases. When appropriate, we strongly recommend the
-FRAMrsquared functions instead. 
+- `db-pull-example.R` has example code to pull information from a local database. When working with FRAM files, note that the FRAMrsquared package (https://github.com/FRAMverse/framrsquared) has a lot of functions that massively streamline working with the FRAM databases. When appropriate, we strongly recommend the FRAMrsquared functions instead. 
 
 ## Quarto and Rmarkdown
 
@@ -84,7 +83,7 @@ computer is connected to the internet.
 - `example-ode-solver.R` has example code for numerically solving and plotting a system of ordinary differential equations (a form of continuous time dynamic models). Many theoretical ecology models are constructed of ordinary differential equations.
 - `multi-list-dopar.R` has an example of parallelization with multiple objects output per loop. 
 - `framrsquared-style-checker.R` has functions to check an R script for (a) use of `<-` for assignment, and (b) use of snake_case for variable assignment. These are not foolproof, but server as helpers for more consistent coding.
-- `cell-range-translate.R` has a function to translate excel cell range specifications to corresponding rows and columns to streamline working with R dataframes that come from excel spreadsheets. If only a subset of the data frame was read in, use the optional `start` argument to specify where the excel reading started. 
+- `cell-range-translate.R` has a function to translate excel cell range specifications to corresponding rows and columns to streamline working with R dataframes that come from excel spreadsheets. If only a subset of the data frame was read in, use the optional `start` argument to specify where the excel reading started. This function is included in the `TAMMsupport` package, and any further developments will be implemented there.
 
 
 # Excel template files, in `excel/`

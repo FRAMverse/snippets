@@ -1,4 +1,6 @@
 ## Translates excel cell address or range to data frame rows and columns
+## 
+## Note that this is now included in TAMMsupport; updates to function will live there.
 
 cell_range_translate = function(x, #excel cell address or cell range, e.g. "D6" or "D6:BG27"
                                 expand = TRUE, #if TRUE, provides the row and 
