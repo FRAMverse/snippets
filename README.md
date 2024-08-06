@@ -32,6 +32,7 @@ can be used to add piechart layers onto maps, making it useful for some very spe
 - `color-blind-palette.R` contains a simple vector of colorblind friendly colors
 that may be more visually appealing than the discrete values provided in the `viridis` package. (The `viridis` package has hugely helpful tools for making figures color-blind friendly, and seems particularly well suited for continuous color gradients). Colorblind friendliness of ggplot objects can easily be tested with `colorBlindness::cvdPlot()`. The `colorBlindness` package also has many good color palettes for discrete
 colors. See https://cran.r-project.org/web/packages/colorBlindness/vignettes/colorBlindness.html.
+- `color-wdfw-pallete.R` contains the WDFW colors (based on the 2023 WDFW style guide) in vector form. Useful reference when using `color_scale_manual` or other color-determining functions.
 - `doy_2md.R` has a few functions to simplify translating day of year into a month/year. While this could
 be useful in data manipulation, there are likely better tools for this, depending on the task (check out the `lubridate` package!). However, `doy_2md()` can be helpful when creating custom date axes. 
 - `ggplot-axis-relabeling.R` has a series of functions to streamline making custom axis labels
