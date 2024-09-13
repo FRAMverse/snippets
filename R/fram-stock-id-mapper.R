@@ -1,5 +1,5 @@
 library(tidyverse)
-## function to map between the stock id used in the bkFRAM table and the stock ID used literally everywhere else. 
+## function to map between the stock id used in the bkFRAM tablehttp://127.0.0.1:30661/graphics/3da6d2c1-7105-4ca0-85b7-fd5e211e1c0b.png and the stock ID used literally everywhere else. 
 ## NumStk defines the maximum normal stock ID in the resulting dataframe
 stock_id_mapper = function(NumStk = 80){
   ## note: after the initial 8 stock id, we settle down to a simple pattern.
@@ -16,3 +16,4 @@ stock_id_mapper = function(NumStk = 80){
   return(res)
 }
 stock_id_mapper()
+
