@@ -1,6 +1,3 @@
-library(tidyverse)
-
-
 ## calculate confidence intervals of binomial data from the proportion of successes and the total number of trials.
 ## Common use case: Our test fishing found a mark rate of 0.7 from 26 total fish. What's our confidence interval for that?
 ## Can be used for other classifications of fish as long as there are only 2 classes (e.g. "is legal size" vs "not legal size" or
@@ -74,8 +71,9 @@ confint_fromsample(p = .7, n = 26)
 ## Can give vectors of p and n to provide multiple confidence intervals.
 confint_fromsample(p = c(0, 0.7), n = c(26, 26))
 
+library(tidyverse)
 ## using some of our catch data as an example
-raw = read_csv("C:/Users/edwc1477/Downloads/ocean.csv")
+raw = read_csv("C:/Users/ME/Downloads/ocean.csv")
 dat = raw |> 
   mutate(n = marked_encounters + unmarked_encounters,
          p = marked_encounters / n
