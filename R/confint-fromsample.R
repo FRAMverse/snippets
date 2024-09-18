@@ -79,3 +79,4 @@ dat = raw |>
          p = marked_encounters / n
   ) |> 
   mutate(conf.limits = confint_fromsample(p, n))
+
