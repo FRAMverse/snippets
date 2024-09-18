@@ -16,7 +16,8 @@ dat |>
 ggplot(dat)+
   geom_ribbon(aes(x = year, ymin = lower, ymax = upper), alpha = 0.2)+
   geom_point(aes(x = year, y = est), size = 3)+
-  scale_x_continuous(breaks = seq(1990, 2000, by = 2))
+  scale_x_continuous(breaks = seq(1990, 2000, by = 2))+
+  ggtitle("Original version")
 
 
 
@@ -48,5 +49,6 @@ ggplot(dat)+
   geom_ribbon(aes(x = year, ymin = lower.ribbon, ymax = upper.ribbon), alpha = 0.2)+
   geom_segment(aes(x = year, y = lower.segment, yend = upper.segment), linewidth = 0.8, alpha = 0.5)+
   geom_point(aes(x = year, y = est), size = 3)+
-  scale_x_continuous(breaks = seq(1990, 2000, by = 2))
+  scale_x_continuous(breaks = seq(1990, 2000, by = 2))+
+  ggtitle("Fixed version")
 
