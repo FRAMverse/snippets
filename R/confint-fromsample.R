@@ -42,7 +42,7 @@ confint_fromsample = function(p, #sample probability of marked (or other status 
   res = exp(conf)/(1+exp(conf))
   
   ## using likelihood profiling to handle cases when p = 0 or 1. 
-  if(any( p == 0 | p == 1)){
+  if(any( p.clean == 0 | p.clean == 1)){
     if(level != 0.95){
       cli::cli_alert_warning("Extreme values detected (p = 0 or p = 1). Current methods only calculate CIs correctly in these cases when level = 0.95")
     }else{
@@ -69,7 +69,7 @@ confint_fromsample = function(p, #sample probability of marked (or other status 
 confint_fromsample(p = .7, n = 26)
 
 ## Can give vectors of p and n to provide multiple confidence intervals.
-confint_fromsample(p = c(0, 0.7), n = c(26, 26))
+confint_fromsample(p = c(0, 0.7, NA), n = c(26, 26, 0))
 
 library(tidyverse)
 ## using some of our catch data as an example
@@ -80,3 +80,5 @@ dat = raw |>
   ) |> 
   mutate(conf.limits = confint_fromsample(p, n))
 
+
+confint_fromsample(p = c(0, 0.7, ), n = c(26, 26, 0))
