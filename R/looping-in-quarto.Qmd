@@ -1,0 +1,34 @@
+
+## Purpose
+
+This is a working example to generate tabsets programmatically by looping over 
+variables.
+
+```{r}
+library(tidyverse)
+plots <- mtcars |>
+  group_by(cyl) |>
+  nest() |>
+  mutate(plot = map(data, \(x)
+                    x |>
+                      ggplot(aes(mpg, wt)) +
+                      geom_point()))
+
+
+render_tabs <- function(cyl, plot){
+  cat(glue::glue("### {cyl} Cylinders   \n\n"))
+  print(plot)
+  cat(' \n \n')
+}
+
+```
+
+
+::: {.panel-tabset}
+```{r ggplot}
+#| results: asis
+plots |>
+  pwalk(\(cyl, plot, ...) render_tabs(cyl, plot))
+```
+:::
+  
