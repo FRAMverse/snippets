@@ -2,7 +2,7 @@
 ## Purpose
 
 This is a working example to generate tabsets programmatically by looping over 
-variables.
+variables. Written by Ty.
 
 ```{r}
 library(tidyverse)
@@ -14,13 +14,6 @@ plots <- mtcars |>
                       ggplot(aes(mpg, wt)) +
                       geom_point()))
 
-
-render_tabs <- function(cyl, plot){
-  cat(glue::glue("### {cyl} Cylinders   \n\n"))
-  print(plot)
-  cat(' \n \n')
-}
-
 ```
 
 
@@ -28,7 +21,10 @@ render_tabs <- function(cyl, plot){
 ```{r ggplot}
 #| results: asis
 plots |>
-  pwalk(\(cyl, plot, ...) render_tabs(cyl, plot))
+  pwalk(\(cyl, plot, ...)   {
+    cat(glue::glue("### {cyl} Cylinders   \n\n"))
+    print(plot)
+    cat(' \n\n')
+  })
 ```
 :::
-  
