@@ -1,3 +1,5 @@
+# UPDATE: this has been turned into the `namespacify` package: https://github.com/cbedwards-dfw/namespacify
+
 namespacify_text = function(original.text,
                             packages = c("dplyr", "ggplot2", "purrr", "tidyr", 
                                                     "DBI", "readr", "stringr", "tidyselect")){
