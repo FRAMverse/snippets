@@ -1,0 +1,18 @@
+---
+title: "Document Title"
+author: 
+  - Jane Doe
+date: today
+execute: 
+  warning: false
+message: false
+format: 
+  html:
+    fig-width: 10
+code-fold: true
+toc: true
+embed-resources: true
+editor: visual
+title-block-banner: "#1D886E"
+css: style.css
+---

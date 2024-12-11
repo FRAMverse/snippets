@@ -1,0 +1,3 @@
+## compare the contents of all files with matching names in the two 
+## repositories
+FC C:\Repos\FRAM\*.vb C:\Repos\FRAM-fork\*.vb > FCresults.txt

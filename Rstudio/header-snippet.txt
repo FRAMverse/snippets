@@ -1,0 +1,23 @@
+## Snippet for Rstudio. 
+## Based on Ty's. 
+## Use: replace "Author" with your name
+## Tools > Global Options > Code > Edit Snippets. Copy paste lines below into the snippets file.
+
+
+snippet header
+##########################################################
+## Author: Ty Garber
+## Organization: WDFW
+## Date: `r Sys.Date()`
+## Purpose: ${1:purpose}                                        
+##
+## Notes: ${2:notes}
+##                                           
+##     
+##
+##
+##
+##
+##
+##
+##########################################################

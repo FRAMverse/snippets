@@ -1,0 +1,5 @@
+## FOR USE IN SHELL
+
+grep scripts/ -nr -e "popyrmeans"
+
+##searches the "scripts" folder and all folders within it (recursively) for files with the word "popyrmeans" in it, and returns the file name and line number for each case.

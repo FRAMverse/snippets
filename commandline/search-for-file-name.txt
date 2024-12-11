@@ -1,0 +1,5 @@
+## FOR USE IN SHELL
+
+## In this example, search in the current directory and all subdirectories for xlsx files, and save the list to the text document xlsx-search.txt
+
+find -path .*.xlsx > xlsx-search.txt
