@@ -90,6 +90,7 @@ computer is connected to the internet.
 - `multi-list-dopar.R` has an example of parallelization with multiple objects output per loop. 
 - `framrsquared-style-checker.R` has functions to check an R script for (a) use of `<-` for assignment, and (b) use of snake_case for variable assignment. These are not foolproof, but server as helpers for more consistent coding.
 - `cell-range-translate.R` has a function to translate excel cell range specifications to corresponding rows and columns to streamline working with R dataframes that come from excel spreadsheets. If only a subset of the data frame was read in, use the optional `start` argument to specify where the excel reading started. This function is included in the `TAMMsupport` package, and any further developments will be implemented there.
+- `descriptions-extra.R` has two modifications to `fmtr::descriptions` to improve functionality: a more verbose setter, and a reader that can handle vectors.
 
 
 # Excel template files, in `excel/`
