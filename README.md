@@ -86,6 +86,7 @@ computer is connected to the internet.
 
 ## Misc
 
+- `scrape-paper-news-coverage` makes a dataframe of news articles that reference a scientific paper.
 - `example-ode-solver.R` has example code for numerically solving and plotting a system of ordinary differential equations (a form of continuous time dynamic models). Many theoretical ecology models are constructed of ordinary differential equations.
 - `multi-list-dopar.R` has an example of parallelization with multiple objects output per loop. 
 - `framrsquared-style-checker.R` has functions to check an R script for (a) use of `<-` for assignment, and (b) use of snake_case for variable assignment. These are not foolproof, but server as helpers for more consistent coding.
