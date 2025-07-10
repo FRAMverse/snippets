@@ -45,6 +45,10 @@ with appropriate percent axis ticks, such as when working with exploitation rate
 - `ggtheme-larger.R` and `ggtheme-fram.R` define ggplot themes that serve as good baselines when making figures for general consumption. `ggtheme-larger.R` is deprecated, and we are only leaving as a reference point for now. We recommend `ggtheme-fram.R` as a starting point.
 - `adjust-points.R` contains a function that programmatically shifts overlapping points by a small amount to make colors/symbols easy to see.  
 
+## Analysis tools
+
+- `estimating-mark-rate-cis.R` has a function to estimate the confidence intervals for mark rates or any other data in which observations fall into two categories and you just want the CIs for the proportion of observations that are in one of those categories. Can estimate CIs for markrate or legal markrate of testfishing data.
+- `multinomial-confidence-intervals.R` provides two methods to estimate the confidence intervals for the proportions of test fishing samples that fall into the categories of "legal marked", "legal unmarked", "sublegal marked" and "sublegal unmarked". This function can also more generally be used to estimate confidence intervals for the proportions of categorical data that fall into each category. 
 
 ## FRAM / TAMM tools
 
