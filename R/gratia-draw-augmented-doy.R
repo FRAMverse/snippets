@@ -43,7 +43,7 @@ augment_drawn_doy_panel = function(cur.panel, #panel from draw.gam, accessed wit
   
   
   
-  cur.lims = dat.lims |> filter(.data[[facet_by]] == cur.panel$data$mark_stage[1])
+  cur.lims = dat.lims |> filter(.data[[facet_by]] == cur.panel$data[[facet_by]][1])
   ## update 
   cur.panel$data = cur.panel$data |> filter(doy >= cur.lims$lower_doy, doy<= cur.lims$upper_doy)
   
@@ -60,7 +60,7 @@ augment_drawn_doy_panel = function(cur.panel, #panel from draw.gam, accessed wit
     ungroup()
   
   hist1 = dat.rugs |> 
-    filter(.data[[facet_by]] == "AD X Adult") |> 
+    filter(.data[[facet_by]] == cur.panel$data[[facet_by]][1]) |> 
     ggplot(aes(x = doy, y = n))+
     scale_y_continuous(n.breaks = 2)+
     xlim(layer_scales(cur.panel)$x$range$range)+
@@ -74,6 +74,7 @@ augment_drawn_doy_panel = function(cur.panel, #panel from draw.gam, accessed wit
     lower_panel + 
     plot_layout(heights = c(10,1), axis_title = "collect", axes = "collect_x")
 }
+
 
 ## Example use --------------------------
 library(mgcv)
