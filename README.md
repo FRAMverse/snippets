@@ -31,6 +31,7 @@ variables of a dataframe, in a ggplot framework.
 can be used to add piechart layers onto maps, making it useful for some very specific types of plots. As of 2018 when Collin Edwards was using the package regularly, however, geom_pie only worked if the variables of the data frame used had specific names. `geom_pie2()` fixes this problem, making `geom_pie` behave consistently to other ggplot type functions.
 - `ggplot-template-area-periods.R` provides example code to make a plot representing fishing in areas based on the start and end dates of fishing periods. Note that this can be used more generally for kind of data with start and end dates and multiple categories (e.g. fisheries).
 - `von-bertalanffy-fram.R` provides code to plot the parameterized growth function for Chinook, including the average size at time step for ages 2-5. 
+- `gratia-draw-augmented-doy.R` provides functions to produce improved versions of `gratia::draw()` when plotting smooths across day of year (as `doy`). Applies better X limits and adds tiny histogram instead of slow rugplots to show data coverage.
 
 ### Support
 - `color-blind-palette.R` contains a simple vector of colorblind friendly colors
