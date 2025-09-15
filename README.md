@@ -19,6 +19,7 @@ The goal of this repository is to store and share snippets of code that members 
 ## FRAM team tools
 
 - `SPSIterations.R` is code from Derek Dapp that can automate the SPS iterations process for the Chinook TAMM.
+- `compare_across_dbs.R` has a function and example for comparing mortality tables for the same run in two different databases. Useful for QAQC of new FRAM software.
 
 ## Visualization tools
 
