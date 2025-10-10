@@ -75,6 +75,7 @@ returns a data frame, with separate columns for area name and fishery type (e.g.
 to a dataframe with one entry per day. Optional "dividee" argument allows easy distribution of aggregated values to daily averages (e.g., total fish caught in a period can be divided into average fish caught per day).
 - `timestep-finder.R` calculates the chinook timestep from a vector of dates. Without knowing run-year, timesteps 1 and 4 entirely overlap; this function returns dates in that period as timestep 4.
 - `metadata_saver.R` has tools to streamline saving a dataframe or tibble with metadata.
+- `as-numeric-safe.R` contains a function for safely converting character vectors to numerics (refuses if non-numeric non-NA contents, optionally prints those contents).
 
 ## File manipulation
 
