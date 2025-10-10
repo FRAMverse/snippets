@@ -1,0 +1,98 @@
+
+Tools to turn dataframe of plots into a dropdown menu in a quarto file
+Uses base64enc to convert imagine to encoding, so there's no need for external files. 
+
+
+Function definitions:
+```{r}
+library(ggplot2)
+library(htmltools)
+
+## Convert ggplot to base644 encoded png: ---------
+ggplot_to_base64 <- function(plot, width = 7, height = 5, dpi = 96) {
+  tmp <- tempfile(fileext = ".png")
+  ggsave(tmp, plot, width = width, height = height, dpi = dpi)
+  img_data <- base64enc::base64encode(tmp)
+  unlink(tmp)
+  paste0("data:image/png;base64,", img_data)
+}
+
+## Make HTML widget of dropdown menu
+
+## takes a dataframe with :
+##    $plot as a list of ggplots
+##    $description as a vector of character strings, used as labels to identify in the dropdown.
+make_dropdown = function(plots_df, 
+                         width = 12, ## plot width
+                         height = 8, ## plot height
+                         dpi = 300){ ## plot dpi
+  ## takes
+  # Convert all plots to base64
+  plots_df$img_base64 <- sapply(plots_df$plot, ggplot_to_base64,
+                                width = width,
+                                height = height, 
+                                dpi = dpi)
+  
+  
+  dropdown_options <- paste(
+    sprintf('    <option value="fig%d">%s</option>', 
+            seq_len(nrow(plots_df)), 
+            plots_df$description),
+    collapse = "\n"
+  )
+  
+  # Generate image tags
+  image_tags <- paste(
+    sprintf('  <img id="fig%d" class="figure-img" src="%s" style="max-width: 100%%; display: %s;">',
+            seq_len(nrow(plots_df)),
+            plots_df$img_base64,
+            c("block", rep("none", nrow(plots_df) - 1))),
+    collapse = "\n"
+  )
+  
+  # Create HTML with dropdown and images
+  html_content <- HTML(sprintf('
+<div>
+  <label for="figureSelect">Choose a figure:</label>
+  <select id="figureSelect" style="margin: 10px 0; padding: 5px;">
+%s
+  </select>
+</div>
+
+<div style="margin-top: 20px;">
+%s
+</div>
+
+<script>
+document.getElementById("figureSelect").addEventListener("change", function() {
+  var selected = this.value;
+  var images = document.querySelectorAll(".figure-img");
+  images.forEach(function(img) {
+    img.style.display = "none";
+  });
+  document.getElementById(selected).style.display = "block";
+});
+</script>
+', dropdown_options, image_tags))
+  return(html_content)
+}
+```
+
+Example use:
+
+```{r}
+# Create a dataframe with ggplot objects and descriptions
+plots_df <- data.frame(
+  description = c("Weight vs MPG", "Horsepower vs MPG", "Displacement vs MPG"),
+  plot = I(list(
+    ggplot(mtcars, aes(x = wt, y = mpg)) + geom_point() + labs(title = "Weight vs MPG"),
+    ggplot(mtcars, aes(x = hp, y = mpg)) + geom_point() + labs(title = "Horsepower vs MPG"),
+    ggplot(mtcars, aes(x = disp, y = mpg)) + geom_point() + labs(title = "Displacement vs MPG")
+  ))
+)
+```
+
+```{r}
+#| echo: false
+make_dropdown(plots_df, dpi = 300, width = 12, height= 8)
+```
