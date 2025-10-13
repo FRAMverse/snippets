@@ -8,7 +8,7 @@ Function definitions:
 library(ggplot2)
 library(htmltools)
 
-## Convert ggplot to base644 encoded png: ---------
+## Convert ggplot to base64 encoded png: ---------
 ggplot_to_base64 <- function(plot, width = 7, height = 5, dpi = 96) {
   tmp <- tempfile(fileext = ".png")
   ggsave(tmp, plot, width = width, height = height, dpi = dpi)
@@ -22,39 +22,47 @@ ggplot_to_base64 <- function(plot, width = 7, height = 5, dpi = 96) {
 ## takes a dataframe with :
 ##    $plot as a list of ggplots
 ##    $description as a vector of character strings, used as labels to identify in the dropdown.
-make_dropdown = function(plots_df, 
+make_dropdown = function(plot_df, 
                          width = 12, ## plot width
                          height = 8, ## plot height
                          dpi = 300){ ## plot dpi
-  ## takes
+  ## janky writing, but cut out any rows where there is no plot
+  plot_df = plot_df[sapply(plot_df$plot, length)>0, ]
+  
+  # Generate a unique ID for this dropdown instance
+  unique_id <- paste0("dropdown_", as.integer(Sys.time()) * 1000, "_", sample(1000:9999, 1))
+  
   # Convert all plots to base64
-  plots_df$img_base64 <- sapply(plots_df$plot, ggplot_to_base64,
-                                width = width,
-                                height = height, 
-                                dpi = dpi)
+  plot_df$img_base64 <- sapply(plot_df$plot, ggplot_to_base64,
+                               width = width,
+                               height = height, 
+                               dpi = dpi)
   
   
   dropdown_options <- paste(
-    sprintf('    <option value="fig%d">%s</option>', 
-            seq_len(nrow(plots_df)), 
-            plots_df$description),
+    sprintf('    <option value="%s_fig%d">%s</option>', 
+            unique_id,
+            seq_len(nrow(plot_df)), 
+            plot_df$description),
     collapse = "\n"
   )
   
   # Generate image tags
   image_tags <- paste(
-    sprintf('  <img id="fig%d" class="figure-img" src="%s" style="max-width: 100%%; display: %s;">',
-            seq_len(nrow(plots_df)),
-            plots_df$img_base64,
-            c("block", rep("none", nrow(plots_df) - 1))),
+    sprintf('  <img id="%s_fig%d" class="figure-img-%s" src="%s" style="max-width: 100%%; display: %s;">',
+            unique_id,
+            seq_len(nrow(plot_df)),
+            unique_id,
+            plot_df$img_base64,
+            c("block", rep("none", nrow(plot_df) - 1))),
     collapse = "\n"
   )
   
   # Create HTML with dropdown and images
   html_content <- HTML(sprintf('
 <div>
-  <label for="figureSelect">Choose a figure:</label>
-  <select id="figureSelect" style="margin: 10px 0; padding: 5px;">
+  <label for="%s">Choose a figure:</label>
+  <select id="%s" style="margin: 10px 0; padding: 5px;">
 %s
   </select>
 </div>
@@ -64,16 +72,16 @@ make_dropdown = function(plots_df,
 </div>
 
 <script>
-document.getElementById("figureSelect").addEventListener("change", function() {
+document.getElementById("%s").addEventListener("change", function() {
   var selected = this.value;
-  var images = document.querySelectorAll(".figure-img");
+  var images = document.querySelectorAll(".figure-img-%s");
   images.forEach(function(img) {
     img.style.display = "none";
   });
   document.getElementById(selected).style.display = "block";
 });
 </script>
-', dropdown_options, image_tags))
+', unique_id, unique_id, dropdown_options, image_tags, unique_id, unique_id))
   return(html_content)
 }
 ```
