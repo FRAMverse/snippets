@@ -101,6 +101,9 @@ computer is connected to the internet.
 - `cell-range-translate.R` has a function to translate excel cell range specifications to corresponding rows and columns to streamline working with R dataframes that come from excel spreadsheets. If only a subset of the data frame was read in, use the optional `start` argument to specify where the excel reading started. This function is included in the `TAMMsupport` package, and any further developments will be implemented there.
 - `descriptions-extra.R` has two modifications to `fmtr::descriptions` to improve functionality: a more verbose setter, and a reader that can handle vectors.
 
+## Dev tools
+
+- `plot_function_dependencies.R` makes an interactive map of the functions in a package that depend on the selected function.
 
 # Excel template files, in `excel/`
 
